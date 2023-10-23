@@ -1,5 +1,3 @@
-/* Query to show the average number of escape attempts per animal type of those born between 1990 and 2000 */
-
 SELECT * FROM animals WHERE name LIKE '%mon';
 SELECT name FROM animals WHERE EXTRACT(YEAR FROM date_of_birth) BETWEEN 2016 AND 2019;
 SELECT name FROM animals WHERE neutered = True AND escape_attempts < 3;
@@ -10,7 +8,7 @@ SELECT * FROM animals WHERE name != 'Gabumon';
 SELECT * FROM animals WHERE weight_kg BETWEEN 10.4 AND 17.3;
 
 
-/* query and update animals table for second project */
+/* second project */
 /* To start a transaction and update the animals specise column and then rollback the changes */
  BEGIN;
  UPDATE animals SET species = 'unspecified';
@@ -72,4 +70,33 @@ SELECT neutered, COUNT(*) AS escape_attempts FROM animals GROUP BY neutered;
 
 /* Query to show what is the minimum and maximum weight of each type of animal */
 SELECT species, MIN(weight_kg) AS MIN_weight, MAX(weight_kg) AS MAX_weight FROM animals GROUP BY species;
+/* Query to show the average number of escape attempts per animal type of those born between 1990 and 2000 */
 SELECT AVG(escape_attempts) AS avarage_escape_attempts FROM animals WHERE EXTRACT(YEAR FROM date_of_birth) BETWEEN 1990 AND 2000;
+
+                                             /* Day 3 project */
+
+/* 1:Query to show which animals belong to Melody Pond */
+SELECT animals.name FROM animals JOIN owners ON animals.owner_id = owners.id WHERE owners.full_name = 'Melody Pond';
+
+/* 2: Query to show List of all animals that are pokemon */
+SELECT animals.name AS animal_name FROM animals INNER JOIN species ON animals.species_id = species.id WHERE species.name = 'Pokemon';
+
+/* 3: Query to show List all owners and their animals, include those that don't own any animal. */
+SELECT owners.full_name AS owner_name, STRING_AGG(animals.name, ', ') AS animal_names FROM owners
+LEFT JOIN animals ON owners.id = animals.owner_id GROUP BY owners.full_name;
+
+
+/* 4: Query to show How many animals are there per species? */
+SELECT species.name AS species_name, COUNT(*) AS number_of_animals FROM animals JOIN species ON animals.species_id = species.id GROUP BY species.name;
+
+/* 5: Query to show List all Digimon owned by Jennifer Orwell */
+SELECT animals.name AS digimon_name FROM owners INNER JOIN animals ON owners.id = animals.owner_id INNER JOIN species ON animals.species_id = species.id
+WHERE owners.full_name = 'Jennifer Orwell' AND species.name = 'Digimon';
+
+/* 6: Query to show List all animals owned by Dean Winchester that haven't tried to escape */
+SELECT animals.name AS animal_name FROM owners INNER JOIN animals ON owners.id = animals.owner_id WHERE owners.full_name = 'Dean Winchester'
+AND animals.escape_attempts = 0;
+
+/* Query to show Who owns the most animals */
+SELECT owners.full_name AS owner_name, COUNT(animals.id) AS animal_count FROM owners LEFT JOIN animals ON owners.id = animals.owner_id
+GROUP BY owner_name ORDER BY animal_count DESC LIMIT 1;
