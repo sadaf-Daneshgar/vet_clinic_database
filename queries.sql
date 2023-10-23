@@ -1,3 +1,15 @@
+/* Query to show the average number of escape attempts per animal type of those born between 1990 and 2000 */
+
+SELECT * FROM animals WHERE name LIKE '%mon';
+SELECT name FROM animals WHERE EXTRACT(YEAR FROM date_of_birth) BETWEEN 2016 AND 2019;
+SELECT name FROM animals WHERE neutered = True AND escape_attempts < 3;
+SELECT date_of_birth FROM animals WHERE name = 'Agumon' OR name = 'Pikachu';
+SELECT name, escape_attempts FROM animals WHERE weight_kg > 10.5;
+SELECT * FROM animals WHERE neutered = True;
+SELECT * FROM animals WHERE name != 'Gabumon';
+SELECT * FROM animals WHERE weight_kg BETWEEN 10.4 AND 17.3;
+
+
 /* query and update animals table for second project */
 /* To start a transaction and update the animals specise column and then rollback the changes */
  BEGIN;
@@ -60,6 +72,4 @@ SELECT neutered, COUNT(*) AS escape_attempts FROM animals GROUP BY neutered;
 
 /* Query to show what is the minimum and maximum weight of each type of animal */
 SELECT species, MIN(weight_kg) AS MIN_weight, MAX(weight_kg) AS MAX_weight FROM animals GROUP BY species;
-
-/* Query to show the average number of escape attempts per animal type of those born between 1990 and 2000 */
 SELECT AVG(escape_attempts) AS avarage_escape_attempts FROM animals WHERE EXTRACT(YEAR FROM date_of_birth) BETWEEN 1990 AND 2000;
