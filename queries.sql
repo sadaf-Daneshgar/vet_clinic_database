@@ -100,3 +100,5 @@ AND animals.escape_attempts = 0;
 /* Query to show Who owns the most animals */
 SELECT owners.full_name AS owner_name, COUNT(animals.id) AS animal_count FROM owners LEFT JOIN animals ON owners.id = animals.owner_id
 GROUP BY owner_name ORDER BY animal_count DESC LIMIT 1;
+
+/* Day 4 Project */
