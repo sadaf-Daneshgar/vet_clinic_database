@@ -99,4 +99,4 @@ INSERT INTO visits (id, date_of_visit, animal_id, vet_id) VALUES
 /* Blossom visited Stephanie Mendez */
 (19, '2020-05-24', 10, 3),
 /* Blossom visited William Tatcher */
-(20, '2021-01-11', 10 ,1)
+(20, '2021-01-11', 10 ,1);
