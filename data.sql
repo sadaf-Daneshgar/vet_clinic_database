@@ -42,3 +42,61 @@ UPDATE animals SET owner_id = (SELECT id FROM owners WHERE full_name = 'Jennifer
 UPDATE animals SET owner_id = (SELECT id FROM owners WHERE full_name = 'Bob') WHERE name IN ('Devimon','Plantmon');
 UPDATE animals SET owner_id = (SELECT id FROM owners WHERE full_name = 'Melody Pond') WHERE name IN ('Charmander', 'Squirtle', 'Blossom');
 UPDATE animals SET owner_id = (SELECT id FROM owners WHERE full_name = 'Dean Winchester') WHERE name IN ('Angemon', 'Boarmon');
+
+/* Day 4 project */
+
+/* insert values into vet table */
+INSERT INTO vets (id, name, age, date_of_graduation) VALUES
+(1, 'William Tatcher', 45, '2000-04-23'),
+(2, 'Maisy Smith', 26, '2019-01-17'),
+(3, 'Stephanie Mendez', 64, '1981-05-04'),
+(4, 'Jack Harkness', 38, '2008-06-08');
+
+/* insert values into specializations table */
+INSERT INTO specializations (species_id, vet_id) VALUES
+(1, 1),
+(1, 3),
+(2, 3),
+(2, 4);
+
+INSERT INTO visits (id, date_of_visit, animal_id, vet_id) VALUES
+/* Agumon visited William Tatcher */
+(1, '2020-05-24', 1, 1),
+/* Agumon visited Stephanie Mendez */
+(2, '2020-07-22', 1, 3),
+/* Gabumon visited Jack Harkness */
+(3, '2021-02-02', 2, 4),
+/* Pikachu visited Maisy Smith */
+(4, '2020-01-05', 3, 2),
+/* Pikachu visited Maisy Smith */
+(5, '2020-03-08', 3, 2),
+/* Pikachu visited Maisy Smith */
+(6, '2020-05-14', 3, 2),
+/* Devimon visited Stephanie Mendez */
+(7, '2021-05-04', 4, 3),
+/* Charmander visited Jack Harkness */
+(8, '2021-02-24', 5, 4),
+/* Plantmon visited Maisy Smith */
+(9, '2019-12-21', 6, 2),
+/* Plantmon visited William Tatcher */
+(10, '2020-08-10', 6, 1),
+/* Plantmon visited Maisy Smith */
+(11, '2021-04-07', 6, 2),
+/* Squirtle visited Stephanie Mendez */
+(12, '2019-09-29', 7, 3),
+/* Angemon visited Jack Harkness */
+(13, '2020-10-03', 8, 4),
+/* Angemon visited Jack Harkness */
+(14, '2020-11-04', 8, 4),
+/* Boarmon visited Maisy Smith */
+(15, '2019-01-24', 9, 2), 
+/* Boarmon visited Maisy Smith */
+(16, '2019-05-15', 9, 2),
+/* Boarmon visited Maisy Smith */
+(17, '2020-02-27', 9, 2),
+/* Boarmon visited Maisy Smith */
+(18, '2020-08-03', 9, 2),
+/* Blossom visited Stephanie Mendez */
+(19, '2020-05-24', 10, 3),
+/* Blossom visited William Tatcher */
+(20, '2021-01-11', 10 ,1);

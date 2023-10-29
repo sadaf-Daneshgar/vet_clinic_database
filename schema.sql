@@ -38,3 +38,28 @@ ALTER TABLE animals ADD CONSTRAINT fk_species_id FOREIGN KEY (species_id) REFERE
 /* Query for add column owner_id which is a foreign key referencing the owners table */
 ALTER TABLE animals ADD COLUMN owner_id INTEGER;
 ALTER TABLE animals ADD CONSTRAINT fk_owner_id FOREIGN KEY (owner_id) REFERENCES owners(id);
+
+/* Day 4 project */
+CREATE TABLE vets (
+   id SERIAL PRIMARY KEY,
+   name VARCHAR(100) NOT NULL,
+   age INTEGER NOT NULL,
+   date_of_graduation DATE NOT NULL
+);
+
+/* Query to create tabel of specializations for many to many relationship between vets and species */
+CREATE TABLE specializations (
+   species_id INTEGER REFERENCES species(id),
+   vet_id INTEGER REFERENCES vets,
+   CONSTRAINT pk_specializations PRIMARY KEY (species_id, vet_id)
+);
+
+/* Query for many to many relationship between animals and vets */
+CREATE TABLE visits (
+   id SERIAL PRIMARY KEY,
+   date_of_visit DATE NOT NULL,
+   animal_id INTEGER,
+   vet_id INTEGER,
+   CONSTRAINT fk_animal_id FOREIGN KEY (animal_id) REFERENCES animals(id),
+   CONSTRAINT fk_vet_id FOREIGN KEY (vet_id) REFERENCES vets(id)
+);
