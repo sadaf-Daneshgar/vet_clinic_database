@@ -71,3 +71,8 @@ ALTER TABLE owners ADD COLUMN email VARCHAR(120);
 
 -- Remove the NOT NULL constraint from the age column
 ALTER TABLE owners ALTER COLUMN age DROP NOT NULL;
+
+/* create index to decrease the execution time of the query */
+CREATE INDEX idx_visits_animal_id ON visits(animal_id);
+CREATE INDEX idx_visits_vet_id ON visits(vet_id);
+CREATE INDEX idx_owners_email ON owners(email);

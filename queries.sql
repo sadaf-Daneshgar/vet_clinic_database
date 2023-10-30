@@ -146,8 +146,3 @@ SELECT * FROM visits where vet_id = 2;
 EXPLAIN ANALYZE SELECT * FROM visits where vet_id = 2;
 SELECT * FROM owners where email = 'owner_18327@mail.com';
 EXPLAIN ANALYZE SELECT * FROM owners WHERE email = 'owner_18327@mail.com';
-
-/* create index to decrease the execution time of the query */
-CREATE INDEX idx_visits_animal_id ON visits(animal_id);
-CREATE INDEX idx_visits_vet_id ON visits(vet_id);
-CREATE INDEX idx_owners_email ON owners(email);
