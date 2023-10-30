@@ -19,13 +19,13 @@ INSERT INTO animals (id, name, date_of_birth, escape_attempts, neutered, weight_
            /* Day 3 project */
 
 /* inserting data into owners table */
-INSERT INTO owners (id, full_name, age) VALUES
-(1, 'Sam Smith', 34),
-(2, 'Jennifer Orwell', 19),
-(3, 'Bob', 45),
-(4, 'Melody Pond', 77),
-(5, 'Dean Winchester', 14),
-(6, 'Jodie Whittaker', 38);
+INSERT INTO owners (full_name, age) VALUES
+('Sam Smith', 34),
+('Jennifer Orwell', 19),
+('Bob', 45),
+('Melody Pond', 77),
+('Dean Winchester', 14),
+('Jodie Whittaker', 38);
 
 /* inserting data into species table */
 INSERT INTO species (id, name) VALUES
@@ -59,44 +59,52 @@ INSERT INTO specializations (species_id, vet_id) VALUES
 (2, 3),
 (2, 4);
 
-INSERT INTO visits (id, date_of_visit, animal_id, vet_id) VALUES
+INSERT INTO visits (date_of_visit, animal_id, vet_id) VALUES
 /* Agumon visited William Tatcher */
-(1, '2020-05-24', 1, 1),
+('2020-05-24', 1, 1),
 /* Agumon visited Stephanie Mendez */
-(2, '2020-07-22', 1, 3),
+('2020-07-22', 1, 3),
 /* Gabumon visited Jack Harkness */
-(3, '2021-02-02', 2, 4),
+('2021-02-02', 2, 4),
 /* Pikachu visited Maisy Smith */
-(4, '2020-01-05', 3, 2),
+('2020-01-05', 3, 2),
 /* Pikachu visited Maisy Smith */
-(5, '2020-03-08', 3, 2),
+('2020-03-08', 3, 2),
 /* Pikachu visited Maisy Smith */
-(6, '2020-05-14', 3, 2),
+('2020-05-14', 3, 2),
 /* Devimon visited Stephanie Mendez */
-(7, '2021-05-04', 4, 3),
+('2021-05-04', 4, 3),
 /* Charmander visited Jack Harkness */
-(8, '2021-02-24', 5, 4),
+('2021-02-24', 5, 4),
 /* Plantmon visited Maisy Smith */
-(9, '2019-12-21', 6, 2),
+('2019-12-21', 6, 2),
 /* Plantmon visited William Tatcher */
-(10, '2020-08-10', 6, 1),
+('2020-08-10', 6, 1),
 /* Plantmon visited Maisy Smith */
-(11, '2021-04-07', 6, 2),
+('2021-04-07', 6, 2),
 /* Squirtle visited Stephanie Mendez */
-(12, '2019-09-29', 7, 3),
+('2019-09-29', 7, 3),
 /* Angemon visited Jack Harkness */
-(13, '2020-10-03', 8, 4),
+('2020-10-03', 8, 4),
 /* Angemon visited Jack Harkness */
-(14, '2020-11-04', 8, 4),
+('2020-11-04', 8, 4),
 /* Boarmon visited Maisy Smith */
-(15, '2019-01-24', 9, 2), 
+('2019-01-24', 9, 2), 
 /* Boarmon visited Maisy Smith */
-(16, '2019-05-15', 9, 2),
+('2019-05-15', 9, 2),
 /* Boarmon visited Maisy Smith */
-(17, '2020-02-27', 9, 2),
+('2020-02-27', 9, 2),
 /* Boarmon visited Maisy Smith */
-(18, '2020-08-03', 9, 2),
+('2020-08-03', 9, 2),
 /* Blossom visited Stephanie Mendez */
-(19, '2020-05-24', 10, 3),
+('2020-05-24', 10, 3),
 /* Blossom visited William Tatcher */
-(20, '2021-01-11', 10 ,1);
+('2021-01-11', 10 ,1);
+
+/* Day 5 project */
+
+-- This will add 3.594.280 visits considering you have 10 animals, 4 vets, and it will use around ~87.000 timestamps (~4min approx.)
+INSERT INTO visits (animal_id, vet_id, date_of_visit) SELECT * FROM (SELECT id FROM animals) animal_ids, (SELECT id FROM vets) vets_ids, generate_series('1980-01-01'::timestamp, '2021-01-01', '4 hours') visit_timestamp;
+
+-- This will add 2.500.000 owners with full_name = 'Owner <X>' and email = 'owner_<X>@email.com' (~2min approx.)
+insert into owners (full_name, email) select 'Owner ' || generate_series(1,2500000), 'owner_' || generate_series(1,2500000) || '@mail.com';
